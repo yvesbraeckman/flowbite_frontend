@@ -1,0 +1,11 @@
+<div class="h-full p-4 sm:ml-64 dark:bg-gray-800">
+  <div class="max-h-screen p-4 mt-14 box-border dark:bg-gray-800">
+    <h1 class="dark:text-neutral-50 ml-5 text-3xl text-black-600 font-bold">{{this.currentDevice.name}}</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 p-4">
+      <app-charts [name]="name1" [sensorData]="tempData"></app-charts>
+      <app-charts [name]="name2" [sensorData]="tempData"></app-charts>
+      <app-charts [name]="name3" [sensorData]="tempData"></app-charts>
+      <app-charts [name]="name4" [sensorData]="tempData"></app-charts>
+    </div>
+  </div>
+</div>

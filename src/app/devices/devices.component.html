@@ -1,0 +1,60 @@
+<div  class="h-full p-4 sm:ml-64 dark:bg-gray-800 ">
+    <div id="cont" class="h-full p-8 mt-14 box-border dark:bg-gray-800">
+    <div class="flex items-center justify-between mb-4">
+        <h5 class="pl-4 text-3xl text-black-600 font-bold dark:text-neutral-50">Devices</h5>
+        <button type="button" class="text-white bg-green-600 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"><a>Update</a></button>
+   </div>
+   <div class="flow-root">
+        <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700 ">
+            @for(device of devices; track i; let i = $index){
+                
+                <li class=" py-3 sm:py-4 dark:hover:bg-slate-600 hover:bg-slate-100 rounded-lg ">
+                        <div class="flex items-center justify-between grid grid-cols-4">
+                            <div class="flex items-center">
+                                <div class="flex-1 min-w-0 ms-4">
+                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                        {{device.name}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center w-full justify-end col-start-3">
+                                <button type="button"  class="mr-5 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-sm rounded-full text-xs px-2.5 py-0.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><a (click)="setCurrentDevice(device)" [routerLink]="['/logs']" >Logs</a></button>
+                                <button type="button"  class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-sm rounded-full text-xs px-2.5 py-0.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><a (click)="setCurrentDevice(device)" [routerLink]="['/dashboard']">Graphs</a></button>
+                            </div>
+                         
+                            <div class="flex items-center col-start-4">
+                                <div class="w-full flex items-center justify-end">
+                                    @if(device.status){
+                                        <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                            <span class="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
+                                            Running
+                                        </span>
+                                    }
+                                    @else{
+                                        <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                                            <span class="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
+                                            Down
+                                        </span>                            }
+                                </div>
+                                <div class="ml-7 mr-4 inline-flex items-center justify-center text-base font-semibold text-gray-900 dark:text-white">
+                                    <span class="mr-1">
+                                        <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M2.98755 7.97095c0-.55229.44771-1 1-1H16.9253c.5523 0 1 .44771 1 1v7.95855c0 .5522-.4477 1-1 1H3.98755c-.55229 0-1-.4478-1-1V7.97095ZM20.9129 12.9419v-1.9834c0-.5523-.4478-1-1-1h-.9876c-.5523 0-1 .4477-1 1v1.9834c0 .5523.4477 1 1 1h.9876c.5522 0 1-.4477 1-1Z"/>
+                                            <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M5.9751 9.9585h8.9627v3.9834H5.9751V9.9585Z"/>
+                                          </svg>                                  
+                                    </span>
+                                    <span class="text-sm">
+                                        {{device.battery}}%
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                </li>
+            }
+        </ul>
+   </div>
+</div>
+
+    <div>
+</div>
+

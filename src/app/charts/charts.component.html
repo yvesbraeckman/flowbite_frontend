@@ -1,0 +1,15 @@
+
+<div class="h-full bg-white rounded-lg shadow-sm dark:bg-gray-800 p-4">
+    <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-2">{{name}}</h5>
+    <div>
+        <apx-chart class="dark:text-white"
+            [series]="chartOptions.series!"
+            [chart]="chartOptions.chart!"
+            [xaxis]="chartOptions.xaxis!"
+            [stroke]="chartOptions.stroke!"
+            [tooltip]="chartOptions.tooltip!"
+            [dataLabels]="chartOptions.dataLabels!"
+        ></apx-chart>
+    </div>
+  </div>
+  
