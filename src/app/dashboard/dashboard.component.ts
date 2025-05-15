@@ -17,32 +17,49 @@ export class DashboardComponent {
   
   currentDevice: Device
 
-  tempData: number[][] = [
-        [1741863600000, 1013],
-        [1741863900000, 1010],
-        [1741864200000, 1015],
-        [1741864500000, 1008],
-        [1741864800000, 1020],
-        [1741865100000, 1005],
-        [1741865400000, 1012],
-        [1741865700000, 1017],
-        [1741866000000, 1003],
-        [1741866300000, 1011],
-        [1741866600000, 1018],
-        [1741866900000, 1009],
-        [1741867200000, 1006],
-        [1741867500000, 1014],
-        [1741867800000, 1010],
-        [1741868100000, 1021],
-        [1741868400000, 1004],
-        [1741868700000, 1012]    
-    ];
+  temperatuur: number[][] = [];
+  humidity: number[][] = [];
+  pressure: number[][] = [];
+  tippings: number[][] = []; 
 
-    constructor(private service: DeviceServiceService){
-      this.currentDevice = service.currentDevice
-
-    }
-
-
+constructor(private service: DeviceServiceService) {
+    this.currentDevice = service.currentDevice;
+    this.service.getTemperature().subscribe({
+      next: (data) => {
+        console.log('API data geladen in temperatuur:', data);
+        this.temperatuur = data;
+      },
+      error: (error) => {
+        console.error('Fout bij ophalen temperatuur:', error);
+      }
+    });
+    this.service.getHumidity().subscribe({
+      next: (data) => {
+        console.log('API data geladen in humidity:', data);
+        this.humidity = data;
+      },
+      error: (error) => {
+        console.error('Fout bij ophalen humidity:', error);
+      }
+    });
+    this.service.getPressure().subscribe({
+      next: (data) => {
+        console.log('API data geladen in pressure:', data);
+        this.pressure = data;
+      },
+      error: (error) => {
+        console.error('Fout bij ophalen pressure:', error);
+      }
+    });
+    this.service.getTippings().subscribe({
+      next: (data) => {
+        console.log('API data geladen in tippings:', data);
+        this.tippings = data;
+      },
+      error: (error) => {
+        console.error('Fout bij ophalen tippings:', error);
+      }
+    });
+  }
 }
 

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -25,7 +25,7 @@ export type ChartOptions = {
   templateUrl: './charts.component.html',
   styleUrl: './charts.component.css'
 })
-export class ChartsComponent implements OnInit {
+export class ChartsComponent implements OnChanges { //(voor yves: ik heb naar onchanges veranderd door een timing probleem)
   @ViewChild("chart") chart!: ChartComponent;
   @Input() sensorData?: number[][];
   @Input() name: string; 
@@ -36,7 +36,8 @@ export class ChartsComponent implements OnInit {
 
   public chartOptions!: Partial<ChartOptions>;
 
-  ngOnInit() {
+  ngOnChanges() {
+    console.log('sensorData in ngOnChanges:', this.sensorData); // Log de data
     this.chartOptions = {
       series: [
         {

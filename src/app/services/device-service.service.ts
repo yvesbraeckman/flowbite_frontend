@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, map } from 'rxjs';
 import Device from '../../types'
 
 @Injectable({
@@ -60,5 +61,48 @@ export class DeviceServiceService {
     this._currentDevice = value;
   }
 
+  getTemperature(): Observable<number[][]> {
+    return this.client.get<any[]>('http://localhost:3000/API/temperature?range=-2h').pipe(
+      map((data) =>
+        data.map((item) => [
+          new Date(item._time).getTime(),
+          item._value
+        ])
+      )
+    );
+  }
+
+    getHumidity(): Observable<number[][]> {
+    return this.client.get<any[]>('http://localhost:3000/API/humidity?range=-2h').pipe(
+      map((data) =>
+        data.map((item) => [
+          new Date(item._time).getTime(),
+          item._value
+        ])
+      )
+    );
+  }
+
+      getPressure(): Observable<number[][]> {
+    return this.client.get<any[]>('http://localhost:3000/API/pressure?range=-2h').pipe(
+      map((data) =>
+        data.map((item) => [
+          new Date(item._time).getTime(),
+          item._value
+        ])
+      )
+    );
+  }
+
+        getTippings(): Observable<number[][]> {
+    return this.client.get<any[]>('http://localhost:3000/API/tippings?range=-2h').pipe(
+      map((data) =>
+        data.map((item) => [
+          new Date(item._time).getTime(),
+          item._value
+        ])
+      )
+    );
+  }
 
 }
