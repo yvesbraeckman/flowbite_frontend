@@ -62,7 +62,7 @@ export class DeviceServiceService {
   }
 
   getTemperature(): Observable<number[][]> {
-    return this.client.get<any[]>('http://localhost:3000/API/temperature?range=-2h').pipe(
+    return this.client.get<any[]>('http://bsaffer.rombouts.tech:3000/API/temperature?range=-2h').pipe(
       map((data) =>
         data.map((item) => [
           new Date(item._time).getTime(),
@@ -73,7 +73,7 @@ export class DeviceServiceService {
   }
 
     getHumidity(): Observable<number[][]> {
-    return this.client.get<any[]>('http://localhost:3000/API/humidity?range=-2h').pipe(
+    return this.client.get<any[]>('http://bsaffer.rombouts.tech:3000/API/humidity?range=-2h').pipe(
       map((data) =>
         data.map((item) => [
           new Date(item._time).getTime(),
@@ -84,7 +84,7 @@ export class DeviceServiceService {
   }
 
       getPressure(): Observable<number[][]> {
-    return this.client.get<any[]>('http://localhost:3000/API/pressure?range=-2h').pipe(
+    return this.client.get<any[]>('http://bsaffer.rombouts.tech:3000/API/pressure?range=-2h').pipe(
       map((data) =>
         data.map((item) => [
           new Date(item._time).getTime(),
@@ -95,7 +95,7 @@ export class DeviceServiceService {
   }
 
         getTippings(): Observable<number[][]> {
-    return this.client.get<any[]>('http://localhost:3000/API/tippings?range=-2h').pipe(
+    return this.client.get<any[]>('http://bsaffer.rombouts.tech:3000/API/tippings?range=-2h').pipe(
       map((data) =>
         data.map((item) => [
           new Date(item._time).getTime(),
