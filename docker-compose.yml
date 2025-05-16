@@ -3,3 +3,7 @@ services:
     build: .
     ports:
       - "80:80"
+networks:
+  default:
+    name: prod_network
+    external: true
