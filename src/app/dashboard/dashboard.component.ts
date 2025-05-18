@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartsComponent } from '../charts/charts.component';
 import { DeviceServiceService } from '../services/device-service.service';
 import Device from '../../types'
@@ -9,7 +9,7 @@ import Device from '../../types'
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit{
   name1: string = "Temperature"
   name2: string = "Humidity"
   name3: string = "Pressure"
@@ -22,9 +22,12 @@ export class DashboardComponent {
   pressure: number[][] = [];
   tippings: number[][] = []; 
 
-constructor(private service: DeviceServiceService) {
+  constructor(private service: DeviceServiceService) {
     this.currentDevice = service.currentDevice;
-    this.service.getTemperature().subscribe({
+  }
+
+  ngOnInit(): void {
+        this.service.getTemperature().subscribe({
       next: (data) => {
         console.log('API data geladen in temperatuur:', data);
         this.temperatuur = data;

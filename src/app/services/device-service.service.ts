@@ -11,7 +11,7 @@ export class DeviceServiceService {
   private _devices: Device[] = [
     {
       name: "Station 1 - Galileo",
-      battery: 4.3,
+      battery: 0,
       status: true
     },
     {
