@@ -22,7 +22,10 @@ export class DashboardComponent implements OnInit{
   pressure: number[][] = [];
   tippings: number[][] = []; 
 
-  dataLoaded: boolean = false
+  tempLoaded: boolean = false
+  humLoaded: boolean = false
+  tipLoaded: boolean = false
+  presLoaded: boolean = false
 
   constructor(private service: DeviceServiceService) {
     this.currentDevice = service.currentDevice;
@@ -33,7 +36,7 @@ export class DashboardComponent implements OnInit{
       next: (data) => {
         console.log('API data geladen in temperatuur:', data);
         this.temperatuur = data;
-        this.dataLoaded = true
+        this.tempLoaded = true
       },
       error: (error) => {
         console.error('Fout bij ophalen temperatuur:', error);
@@ -43,6 +46,7 @@ export class DashboardComponent implements OnInit{
       next: (data) => {
         console.log('API data geladen in humidity:', data);
         this.humidity = data;
+        this.humLoaded = true
       },
       error: (error) => {
         console.error('Fout bij ophalen humidity:', error);
@@ -52,6 +56,7 @@ export class DashboardComponent implements OnInit{
       next: (data) => {
         console.log('API data geladen in pressure:', data);
         this.pressure = data;
+        this.presLoaded = true
       },
       error: (error) => {
         console.error('Fout bij ophalen pressure:', error);
@@ -61,6 +66,7 @@ export class DashboardComponent implements OnInit{
       next: (data) => {
         console.log('API data geladen in tippings:', data);
         this.tippings = data;
+        this.tipLoaded = true
       },
       error: (error) => {
         console.error('Fout bij ophalen tippings:', error);
