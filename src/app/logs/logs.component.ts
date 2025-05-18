@@ -17,10 +17,14 @@ export class LogsComponent {
     this.currentDevice = service.currentDevice
   }
 
-  dropdownOpen = false;
+  dropdownOpen1 = false;
+  dropdownOpen2 = false;
 
-  toggleDropdown() {
-    this.dropdownOpen = !this.dropdownOpen;
+  toggleDropdown1() {
+    this.dropdownOpen1 = !this.dropdownOpen1;
+  }
+  toggleDropdown2() {
+    this.dropdownOpen2 = !this.dropdownOpen2;
   }
 
   setCurrentDevice(device: Device){

@@ -44,8 +44,7 @@
                                           </svg>                                  
                                     </span>
                                     <span class="text-sm">
-                                        {{device.battery}}%
-                                    </span>
+                                        {{ device.battery | number:'1.2-2' }}V                                    </span>
                                 </div>
                             </div>
                         </div>

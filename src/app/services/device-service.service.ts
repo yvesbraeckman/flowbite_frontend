@@ -11,32 +11,32 @@ export class DeviceServiceService {
   private _devices: Device[] = [
     {
       name: "Station 1 - Galileo",
-      battery: 50,
+      battery: 4.3,
       status: true
     },
     {
       name: "Station 2 - Columbus",
-      battery: 89,
+      battery: 4.10,
       status: true
     },
     {
       name: "Station 3 - Kepler",
-      battery: 67,
+      battery: 0.0,
       status: false
     },
     {
       name: "Station 4 - Planck",
-      battery: 33,
+      battery: 4.30,
       status: true
     },
     {
       name: "Station 5 - Hubble",
-      battery: 55,
+      battery: 4.50,
       status: true
     },
     {
       name: "Station 6 - Fermi",
-      battery: 98,
+      battery: 0.0,
       status: false
     },
   ];
@@ -95,6 +95,7 @@ export class DeviceServiceService {
   }
 
         getTippings(): Observable<number[][]> {
+    return this.client.get<any[]>('http://localhost:3000/API/tippings?start=-4h').pipe(
     return this.client.get<any[]>('http://bsaffer.rombouts.tech:3000/API/tippings?range=-2h').pipe(
       map((data) =>
         data.map((item) => [
@@ -102,6 +103,16 @@ export class DeviceServiceService {
           item._value
         ])
       )
+    );
+  }
+
+  getLatestVoltage(): Observable<number> {
+    return this.client.get<any[]>('http://localhost:3000/API/voltage?start=-4h').pipe(
+      map((data) => {
+        if (!data.length) throw new Error('No data found');
+        const latest = data[data.length - 1];
+        return latest._value;
+      })
     );
   }
 
