@@ -22,6 +22,8 @@ export class DashboardComponent implements OnInit{
   pressure: number[][] = [];
   tippings: number[][] = []; 
 
+  dataLoaded: boolean = false
+
   constructor(private service: DeviceServiceService) {
     this.currentDevice = service.currentDevice;
   }
@@ -31,6 +33,7 @@ export class DashboardComponent implements OnInit{
       next: (data) => {
         console.log('API data geladen in temperatuur:', data);
         this.temperatuur = data;
+        this.dataLoaded = true
       },
       error: (error) => {
         console.error('Fout bij ophalen temperatuur:', error);
