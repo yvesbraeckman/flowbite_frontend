@@ -25,4 +25,10 @@ export class DevicesComponent {
   setCurrentDevice(device: Device){
     this.service.currentDevice = device
   }
+
+  getVoltage(){
+    this.service.getLatestVoltage().subscribe(data => {
+        this.devices[0].battery = data
+    })
+  }
 }
