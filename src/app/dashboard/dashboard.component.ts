@@ -17,6 +17,12 @@ export class DashboardComponent implements OnInit{
   
   currentDevice: Device
 
+  dropdownOpen1 = false;
+
+  toggleDropdown1() {
+    this.dropdownOpen1 = !this.dropdownOpen1;
+  }
+
   temperatuur: number[][] = [];
   humidity: number[][] = [];
   pressure: number[][] = [];
@@ -72,6 +78,21 @@ export class DashboardComponent implements OnInit{
         console.error('Fout bij ophalen tippings:', error);
       }
     });
+  }
+
+  loadNewData(range: number){
+    this.service.getTippings(range).subscribe(data => {
+      this.tippings = data
+    })
+    this.service.getHumidity(range).subscribe(data => {
+      this.humidity = data
+    })
+    this.service.getPressure(range).subscribe(data => {
+      this.pressure = data
+    })
+    this.service.getTemperature(range).subscribe(data => {
+      this.temperatuur = data
+    })
   }
 }
 

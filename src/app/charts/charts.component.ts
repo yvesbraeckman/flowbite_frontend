@@ -41,7 +41,7 @@ export class ChartsComponent implements OnChanges { //(voor yves: ik heb naar on
     this.chartOptions = {
       series: [
         {
-          name: "series1",
+          name: this.name,
           data: this.sensorData!
         }
       ],

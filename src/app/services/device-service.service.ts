@@ -61,8 +61,9 @@ export class DeviceServiceService {
     this._currentDevice = value;
   }
 
-  getTemperature(): Observable<number[][]> {
-    return this.client.get<any[]>('http://bsaffer.rombouts.tech:3000/API/temperature?start=-4h').pipe(
+  getTemperature(range?: number): Observable<number[][]> {
+       if(range){
+            return this.client.get<any[]>(`http://bsaffer.rombouts.tech:3000/API/temperature?start=-${range}h`).pipe(
       map((data) =>
         data.map((item) => [
           new Date(item._time).getTime(),
@@ -70,10 +71,21 @@ export class DeviceServiceService {
         ])
       )
     );
+          }
+          else{
+                return this.client.get<any[]>('http://bsaffer.rombouts.tech:3000/API/temperature?start=-4h').pipe(
+      map((data) =>
+        data.map((item) => [
+          new Date(item._time).getTime(),
+          item._value
+        ])
+      )
+    );}
   }
 
-    getHumidity(): Observable<number[][]> {
-    return this.client.get<any[]>('http://bsaffer.rombouts.tech:3000/API/humidity?start=-4h').pipe(
+    getHumidity(range?: number): Observable<number[][]> {
+       if(range){
+            return this.client.get<any[]>(`http://bsaffer.rombouts.tech:3000/API/humidity?start=-${range}h`).pipe(
       map((data) =>
         data.map((item) => [
           new Date(item._time).getTime(),
@@ -81,10 +93,21 @@ export class DeviceServiceService {
         ])
       )
     );
+          }
+          else{
+                return this.client.get<any[]>('http://bsaffer.rombouts.tech:3000/API/humidity?start=-4h').pipe(
+      map((data) =>
+        data.map((item) => [
+          new Date(item._time).getTime(),
+          item._value
+        ])
+      )
+    );}
   }
 
-      getPressure(): Observable<number[][]> {
-    return this.client.get<any[]>('http://bsaffer.rombouts.tech:3000/API/pressure?start=-4h').pipe(
+      getPressure(range?: number): Observable<number[][]> {
+       if(range){
+            return this.client.get<any[]>(`http://bsaffer.rombouts.tech:3000/API/pressure?start=-${range}h`).pipe(
       map((data) =>
         data.map((item) => [
           new Date(item._time).getTime(),
@@ -92,10 +115,21 @@ export class DeviceServiceService {
         ])
       )
     );
+          }
+          else{
+                return this.client.get<any[]>('http://bsaffer.rombouts.tech:3000/API/pressure?start=-4h').pipe(
+      map((data) =>
+        data.map((item) => [
+          new Date(item._time).getTime(),
+          item._value
+        ])
+      )
+    );}
   }
 
-        getTippings(): Observable<number[][]> {
-    return this.client.get<any[]>('http://bsaffer.rombouts.tech:3000/API/tippings?start=-4h').pipe(
+        getTippings(range?: number): Observable<number[][]> {
+          if(range){
+            return this.client.get<any[]>(`http://bsaffer.rombouts.tech:3000/API/tippings?start=-${range}h`).pipe(
       map((data) =>
         data.map((item) => [
           new Date(item._time).getTime(),
@@ -103,6 +137,16 @@ export class DeviceServiceService {
         ])
       )
     );
+          }
+          else{
+                return this.client.get<any[]>('http://bsaffer.rombouts.tech:3000/API/tippings?start=-4h').pipe(
+      map((data) =>
+        data.map((item) => [
+          new Date(item._time).getTime(),
+          item._value
+        ])
+      )
+    );}
   }
 
   getLatestVoltage(): Observable<number> {
