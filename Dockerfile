@@ -15,4 +15,6 @@ FROM nginx:alpine
 # Kopieer de build output van Angular naar de Nginx public folder
 COPY --from=build /app/dist/flowbite-app/browser /usr/share/nginx/html
 
+COPY default.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 80
