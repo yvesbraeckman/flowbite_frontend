@@ -1,5 +1,5 @@
 <div id="cont" class="p-4 sm:ml-64 dark:bg-gray-800">
-  <div class="p-8 mt-14 box-border">
+  <div class="h-full p-8 mt-14 box-border">
     <h1 class="text-3xl text-black-600 font-bold dark:text-neutral-50 mb-5">
       Logs
     </h1>
@@ -14,11 +14,10 @@
             type="button"
           >
             <div class="flex">
-                       Station:&nbsp;  
-              <p>{{currentDevice.name}}</p>
+              Station:&nbsp;
+              <p>{{ currentDevice.name }}</p>
             </div>
-   
-            
+
             <svg
               class="w-2.5 h-2.5 ms-3"
               aria-hidden="true"
@@ -34,17 +33,16 @@
                 d="m1 1 4 4 4-4"
               />
             </svg>
-            
           </button>
 
           @if(dropdownOpen1){
           <div
-            id="dropdownHover"
+            id="dropdownHoverDevice"
             class="mb-5 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-full dark:bg-gray-700"
           >
             <ul
               class="py-2 text-sm text-gray-700 dark:text-gray-200"
-              aria-labelledby="dropdownHoverButton"
+              aria-labelledby="dropdownHoverDeviceButton"
             >
               @for(device of devices; track i; let i = $index){
               <li>
@@ -63,16 +61,12 @@
 
         <div class="w-1/2">
           <button
-            (click)="toggleDropdown2()"
-            id="dropdownHoverButton"
-            data-dropdown-trigger="hover"
-            class="flex justify-between cursor-pointer mb-5 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            id="dropdownCheckboxButton"
+            data-dropdown-toggle="dropdownDefaultCheckbox"
+            class="w-full flex justify-between text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             type="button"
           >
-          <div class="flex">
-            Sensor:&nbsp;
-            <p>{{sensor}}</p>
-          </div>
+            Sensor
             <svg
               class="w-2.5 h-2.5 ms-3"
               aria-hidden="true"
@@ -89,54 +83,84 @@
               />
             </svg>
           </button>
-          @if(dropdownOpen2){
           <div
-            id="dropdownHover"
-            class="mb-5 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-full dark:bg-gray-700"
+            id="dropdownDefaultCheckbox"
+            class="z-10 hidden w-44 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600"
           >
             <ul
-              class="py-2 text-sm text-gray-700 dark:text-gray-200"
-              aria-labelledby="dropdownHoverButton"
+              class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
+              aria-labelledby="dropdownCheckboxButton"
             >
               <li>
-                <a
-                  (click)="toggleDropdown2()"
-                  (click)="setSensor('temperature')"
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >Temperature</a
-                >
+                <div class="flex items-center">
+                  <input
+                    id="checkbox-item-1"
+                    type="checkbox"
+                    (change)="toggleSensor('temperature', $event)"
+                    value=""
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  />
+                  <label
+                    for="checkbox-item-1"
+                    class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >Temperature</label
+                  >
+                </div>
               </li>
               <li>
-                <a
-                  (click)="toggleDropdown2()"
-                  (click)="setSensor('humidity')"
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >Humidity</a
-                >
+                <div class="flex items-center">
+                  <input
+                    id="checkbox-item-2"
+                    type="checkbox"
+                    value=""
+                    (change)="toggleSensor('pressure', $event)"
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  />
+                  <label
+                    for="checkbox-item-2"
+                    class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >Pressure</label
+                  >
+                </div>
               </li>
               <li>
-                <a
-                  (click)="toggleDropdown2()"
-                  (click)="setSensor('pressure')"
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >Pressure</a
-                >
+                <div class="flex items-center">
+                  <input
+                    id="checkbox-item-3"
+                    type="checkbox"
+                    value=""
+                    (change)="toggleSensor('humidity', $event)"
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  />
+                  <label
+                    for="checkbox-item-3"
+                    class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >Humidity</label
+                  >
+                </div>
               </li>
               <li>
-                <a
-                  (click)="toggleDropdown2()"
-                  (click)="setSensor('tippings')"
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >Tippings</a
-                >
+                <div class="flex items-center">
+                  <input
+                    id="checkbox-item-4"
+                    type="checkbox"
+                    value=""
+                    (change)="toggleSensor('tippings', $event)"
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  />
+                  <label
+                    for="checkbox-item-4"
+                    class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >Tippings</label
+                  >
+                </div>
               </li>
             </ul>
           </div>
-          }
         </div>
       </div>
 
-      <div class="">
+     <div class="">
         <div id="date-range-picker" date-rangepicker class="flex items-center">
           <div class="relative w-full">
             <div
@@ -191,6 +215,7 @@
           </div>
         </div>
       </div>
+
       <button
         (click)="downloadData(in1.value, in2.value)"
         class="flex justify-between cursor-pointer h-10 mb-5 w-44 mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

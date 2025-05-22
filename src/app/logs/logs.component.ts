@@ -17,11 +17,26 @@ export class LogsComponent {
   sensor: string = ""
   start: string = ""
   stop: string = ""
+  selectedSensors: string[] = [];
 
   constructor(private service: DeviceServiceService){
     this.devices = service.devices
     this.currentDevice = service.currentDevice
   }
+
+
+
+  toggleSensor(sensor: string, event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.checked) {
+      if (!this.selectedSensors.includes(sensor)) {
+        this.selectedSensors.push(sensor);
+      }
+    } else {
+      this.selectedSensors = this.selectedSensors.filter(s => s !== sensor);
+    }
+  }
+
 
   toggleDropdown1() {
     this.dropdownOpen1 = !this.dropdownOpen1;
@@ -65,12 +80,12 @@ downloadData(start: string, stop: string) {
   this.setStart(start);
   this.setStop(stop);
 
+  console.log(this.selectedSensors)
+
   const exportAndDownload = (data: number[][], sensor: string) => {
     if (!data || data.length === 0) return;
 
-    // Zet om naar CSV of plain text
     const logText = `timestamp,value\n` + data.map(d => `${new Date(d[0]).toISOString()},${d[1]}`).join('\n');
-
     const blob = new Blob([logText], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
 
@@ -82,32 +97,24 @@ downloadData(start: string, stop: string) {
     URL.revokeObjectURL(url);
   };
 
-  switch (this.sensor) {
-    case "temperature":
-      this.service.getTemperature(this.start, this.stop).subscribe(data => {
-        exportAndDownload(data, 'temperature');
-      });
-      break;
-    case "humidity":
-      this.service.getHumidity(this.start, this.stop).subscribe(data => {
-        exportAndDownload(data, 'humidity');
-      });
-      break;
-    case "pressure":
-      this.service.getPressure(this.start, this.stop).subscribe(data => {
-        exportAndDownload(data, 'pressure');
-      });
-      break;
-    case "tippings":
-      this.service.getTippings(this.start, this.stop).subscribe(data => {
-        exportAndDownload(data, 'tippings');
-      });
-      break;
-    default:
-      console.warn('Geen sensor geselecteerd');
-      break;
+  for (const sensor of this.selectedSensors) {
+    switch (sensor) {
+      case 'temperature':
+        this.service.getTemperature(this.start, this.stop).subscribe(data => exportAndDownload(data, 'temperature'));
+        break;
+      case 'humidity':
+        this.service.getHumidity(this.start, this.stop).subscribe(data => exportAndDownload(data, 'humidity'));
+        break;
+      case 'pressure':
+        this.service.getPressure(this.start, this.stop).subscribe(data => exportAndDownload(data, 'pressure'));
+        break;
+      case 'tippings':
+        this.service.getTippings(this.start, this.stop).subscribe(data => exportAndDownload(data, 'tippings'));
+        break;
+    }
   }
 }
+
 
 
 }
