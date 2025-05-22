@@ -9,6 +9,7 @@ import {
   ApexStroke
 } from "ng-apexcharts";
 import { NgApexchartsModule } from "ng-apexcharts";
+import { DeviceServiceService } from '../services/device-service.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -29,9 +30,13 @@ export class ChartsComponent implements OnChanges { //(voor yves: ik heb naar on
   @ViewChild("chart") chart!: ChartComponent;
   @Input() sensorData?: number[][];
   @Input() name: string; 
+  @Input() latest: number|null; 
+  @Input() unit: string
 
-  constructor(){
+  constructor(private service: DeviceServiceService){
     this.name = ""
+    this.latest = 0
+    this.unit = ""
   }
 
   public chartOptions!: Partial<ChartOptions>;

@@ -34,31 +34,31 @@
         >
           <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
             <li>
-              <a (click)="loadNewData(1)" (click)="toggleDropdown1()"
+              <a (click)="loadNewData('-1h')" (click)="toggleDropdown1()"
                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 >Past 1h</a
               >
             </li>
             <li>
-              <a (click)="loadNewData(4)" (click)="toggleDropdown1()"
+              <a (click)="loadNewData('-4h')" (click)="toggleDropdown1()"
                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 >Past 4h</a
               >
             </li>
             <li>
-              <a (click)="loadNewData(12)" (click)="toggleDropdown1()"
+              <a (click)="loadNewData('-12h')" (click)="toggleDropdown1()"
                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 >Past 12h</a
               >
             </li>
             <li>
-              <a (click)="loadNewData(24)" (click)="toggleDropdown1()"
+              <a (click)="loadNewData('-24h')" (click)="toggleDropdown1()"
                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 >Past 24h</a
               >
             </li>
             <li>
-              <a (click)="loadNewData(168)" (click)="toggleDropdown1()"
+              <a (click)="loadNewData('-168h')" (click)="toggleDropdown1()"
                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 >Past 7d</a
               >
@@ -70,10 +70,10 @@
     </div>
     @if(tempLoaded && humLoaded && tipLoaded && presLoaded){
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 p-4">
-      <app-charts [name]="name1" [sensorData]="temperatuur"></app-charts>
-      <app-charts [name]="name2" [sensorData]="humidity"></app-charts>
-      <app-charts [name]="name3" [sensorData]="pressure"></app-charts>
-      <app-charts [name]="name4" [sensorData]="tippings"></app-charts>
+      <app-charts [name]="name1" [sensorData]="temperatuur" [latest]="latestTemp" [unit]="' °C'"></app-charts>
+      <app-charts [name]="name2" [sensorData]="humidity" [latest]="latestHumidity" [unit]="' %'"></app-charts>
+      <app-charts [name]="name3" [sensorData]="pressure" [latest]="latestPressure" [unit]="' Pa'"></app-charts>
+      <app-charts [name]="name4" [sensorData]="tippings" [latest]="latestTippings"></app-charts>
     </div>
     }
   </div>

@@ -33,6 +33,12 @@ export class DashboardComponent implements OnInit{
   tipLoaded: boolean = false
   presLoaded: boolean = false
 
+  latestTemp: number | null = null;
+  latestHumidity: number | null = null;
+  latestPressure: number | null = null;
+  latestTippings: number | null = null;
+
+
   constructor(private service: DeviceServiceService) {
     this.currentDevice = service.currentDevice;
   }
@@ -78,9 +84,13 @@ export class DashboardComponent implements OnInit{
         console.error('Fout bij ophalen tippings:', error);
       }
     });
+  this.service.getLatestTemperature().subscribe(data => this.latestTemp = data);
+  this.service.getLatestHumidity().subscribe(data => this.latestHumidity = data);
+  this.service.getLatestPressure().subscribe(data => this.latestPressure = data);
+  this.service.getLatestTippings().subscribe(data => this.latestTippings = data);
   }
 
-  loadNewData(range: number){
+  loadNewData(range: string){
     this.service.getTippings(range).subscribe(data => {
       this.tippings = data
     })
