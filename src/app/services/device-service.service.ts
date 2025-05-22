@@ -10,7 +10,7 @@ import Device from '../../types'
 export class DeviceServiceService {
   private _devices: Device[] = [
     {
-      name: "Station 1 - Galileo",
+      name: "Galileo",
       battery: 0,
       status: true
     },

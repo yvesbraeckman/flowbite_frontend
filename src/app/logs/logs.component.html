@@ -6,52 +6,59 @@
     <div class="flex flex-col">
       <div class="flex justify-between">
         <div class="w-1/2 mr-12">
-        <button
-          (click)="toggleDropdown1()"
-          id="dropdownHoverButton"
-          data-dropdown-trigger="hover"
-          class="mb-5 cursor-pointer text-white w-full bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          type="button"
-        >
-          Station<svg
-            class="w-2.5 h-2.5 ms-3"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 10 6"
+          <button
+            (click)="toggleDropdown1()"
+            id="dropdownHoverButton"
+            data-dropdown-trigger="hover"
+            class="flex justify-between mb-5 cursor-pointer text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            type="button"
           >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="m1 1 4 4 4-4"
-            />
-          </svg>
-        </button>
+            <div class="flex">
+                       Station:&nbsp;  
+              <p>{{currentDevice.name}}</p>
+            </div>
+   
+            
+            <svg
+              class="w-2.5 h-2.5 ms-3"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 10 6"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 1 4 4 4-4"
+              />
+            </svg>
+            
+          </button>
 
-        @if(dropdownOpen1){
-        <div
-          id="dropdownHover"
-          class="mb-5 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700"
-        >
-          <ul
-            class="py-2 text-sm text-gray-700 dark:text-gray-200"
-            aria-labelledby="dropdownHoverButton"
+          @if(dropdownOpen1){
+          <div
+            id="dropdownHover"
+            class="mb-5 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-full dark:bg-gray-700"
           >
-            @for(device of devices; track i; let i = $index){
-            <li>
-              <a
-                (click)="toggleDropdown1()"
-                (click)="setCurrentDevice(device)"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >{{ device.name }}</a
-              >
-            </li>
-            }
-          </ul>
-        </div>
-        }
+            <ul
+              class="py-2 text-sm text-gray-700 dark:text-gray-200"
+              aria-labelledby="dropdownHoverButton"
+            >
+              @for(device of devices; track i; let i = $index){
+              <li>
+                <a
+                  (click)="toggleDropdown1()"
+                  (click)="setCurrentDevice(device)"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >{{ device.name }}</a
+                >
+              </li>
+              }
+            </ul>
+          </div>
+          }
         </div>
 
         <div class="w-1/2">
@@ -59,10 +66,14 @@
             (click)="toggleDropdown2()"
             id="dropdownHoverButton"
             data-dropdown-trigger="hover"
-            class="cursor-pointer mb-5 w-full text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            class="flex justify-between cursor-pointer mb-5 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             type="button"
           >
-            Sensor<svg
+          <div class="flex">
+            Sensor:&nbsp;
+            <p>{{sensor}}</p>
+          </div>
+            <svg
               class="w-2.5 h-2.5 ms-3"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +92,7 @@
           @if(dropdownOpen2){
           <div
             id="dropdownHover"
-            class="mb-5 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700"
+            class="mb-5 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-full dark:bg-gray-700"
           >
             <ul
               class="py-2 text-sm text-gray-700 dark:text-gray-200"
@@ -89,30 +100,34 @@
             >
               <li>
                 <a
-                  (click)="toggleDropdown2()" (click)="setSensor('temperature')"
+                  (click)="toggleDropdown2()"
+                  (click)="setSensor('temperature')"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >Temperature</a
                 >
               </li>
               <li>
                 <a
-                  (click)="toggleDropdown2()" (click)="setSensor('humidity')"
+                  (click)="toggleDropdown2()"
+                  (click)="setSensor('humidity')"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >humidity</a
+                  >Humidity</a
                 >
               </li>
               <li>
                 <a
-                  (click)="toggleDropdown2()" (click)="setSensor('pressure')"
+                  (click)="toggleDropdown2()"
+                  (click)="setSensor('pressure')"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >pressure</a
+                  >Pressure</a
                 >
               </li>
               <li>
                 <a
-                  (click)="toggleDropdown2()" (click)="setSensor('tippings')"
+                  (click)="toggleDropdown2()"
+                  (click)="setSensor('tippings')"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >tippings</a
+                  >Tippings</a
                 >
               </li>
             </ul>
@@ -121,12 +136,11 @@
         </div>
       </div>
 
-
       <div class="">
         <div id="date-range-picker" date-rangepicker class="flex items-center">
           <div class="relative w-full">
             <div
-              class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+              class="w-1/2 absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
             >
               <svg
                 class="w-4 h-4 text-gray-500 dark:text-gray-400"
@@ -145,8 +159,8 @@
               id="datepicker-range-start"
               name="start"
               type="text"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Start date (dd/mm/yyyy)"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-1/2"
+              placeholder="Start date (mm/dd/yyyy)"
             />
           </div>
           <span class="mx-4 text-gray-500">to</span>
@@ -172,16 +186,34 @@
               name="end"
               type="text"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="End date (dd/mm/yyyy)"
+              placeholder="End date"
             />
           </div>
         </div>
       </div>
       <button
         (click)="downloadData(in1.value, in2.value)"
-        class="cursor-pointer h-10 mb-5 mt-5 text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        class="flex justify-between cursor-pointer h-10 mb-5 w-44 mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         type="button"
-      >Download</button>
+      >
+        Download<svg
+          class="w-5 h-5 text-white-800 dark:text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="10"
+          height="10"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"
+          />
+        </svg>
+      </button>
     </div>
   </div>
 </div>
