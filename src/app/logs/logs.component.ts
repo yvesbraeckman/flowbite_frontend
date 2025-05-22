@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { DeviceServiceService } from '../services/device-service.service';
 import Device from '../../types'
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-logs',
@@ -56,7 +57,9 @@ export class LogsComponent {
     this.stop = this.convertToISO(stop)
   }
 
-
+  ngAfterViewInit() {
+    initFlowbite();
+  }
 
 downloadData(start: string, stop: string) {
   this.setStart(start);
