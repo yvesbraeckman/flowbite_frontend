@@ -59,7 +59,12 @@ export class ChartsComponent implements OnChanges { //(voor yves: ik heb naar on
       dataLabels: { enabled: false },
       stroke: { curve: "smooth" },
       xaxis: { type: "datetime" },
-      tooltip: { x: { format: "dd/MM/yy HH:mm" } }
+      tooltip: { 
+        x:{ 
+          format: "dd/MM/yy HH:mm",
+          show: true
+        }
+      }
     };
   }
 }

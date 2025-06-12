@@ -43,7 +43,6 @@ export class DeviceServiceService {
 
 private _currentDevice: Device = this._devices[0];
 
-
 constructor(private client: HttpClient) { 
 
 }
