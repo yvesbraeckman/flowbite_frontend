@@ -16,8 +16,8 @@ export class DeviceServiceService {
     },
     {
       name: "Station 2 - Columbus",
-      battery: 4.10,
-      status: true
+      battery: 0.0,
+      status: false
     },
     {
       name: "Station 3 - Kepler",
@@ -26,13 +26,13 @@ export class DeviceServiceService {
     },
     {
       name: "Station 4 - Planck",
-      battery: 4.30,
-      status: true
+      battery: 0.0,
+      status: false
     },
     {
       name: "Station 5 - Hubble",
-      battery: 4.50,
-      status: true
+      battery: 0.0,
+      status: false
     },
     {
       name: "Station 6 - Fermi",
